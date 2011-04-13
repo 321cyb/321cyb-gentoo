@@ -21,6 +21,7 @@ IUSE=""
 
 RDEPEND="<dev-hasekll/text-0.12
 		=dev-haskell/blaze-builder-0.2*
+		=dev-haskell/case-insensitive-0.2*
 		>=dev-lang/ghc-6.10.1"
 DEPEND="${RDEPEND}
 		>=dev-haskell/cabal-1.6"
