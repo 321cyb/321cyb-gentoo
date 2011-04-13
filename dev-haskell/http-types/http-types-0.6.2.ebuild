@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="<dev-hasekll/text-0.12
+RDEPEND="<dev-haskell/text-0.12
 		=dev-haskell/blaze-builder-0.2*
 		=dev-haskell/case-insensitive-0.2*
 		>=dev-lang/ghc-6.10.1"
