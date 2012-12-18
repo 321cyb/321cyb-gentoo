@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/inconsolata/inconsolata-20090222.ebuild,v 1.4 2011/11/04 11:24:10 naota Exp $
 
+#The fonts I use here are from https://github.com/MihailJP/Inconsolata-LGC v1.1.0
+
 inherit font
 
 DESCRIPTION="A beautiful sans-serif monotype font designed for code listings"
