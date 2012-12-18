@@ -6,7 +6,7 @@ inherit font
 
 DESCRIPTION="A beautiful sans-serif monotype font designed for code listings"
 HOMEPAGE="https://github.com/MihailJP/Inconsolata-LGC"
-SRC_URI="${FILESDIR}/${P}.tar.bz2"
+SRC_URI="https://github.com/321cyb/321cyb-gentoo/raw/master/media-fonts/inconsolata/files/inconsolata-20120502.tar.bz2"
 
 LICENSE="OFL-1.1"
 SLOT="0"
