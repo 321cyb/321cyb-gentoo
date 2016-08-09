@@ -1,0 +1,59 @@
+--- NetworkManager-1.0.12/src/dns-manager/nm-dns-dnsmasq.c	2016-04-02 05:27:52.000000000 +0800
++++ NetworkManager-1.0.12/src/dns-manager/nm-dns-dnsmasq.c	2016-08-09 07:25:42.826477075 +0800
+@@ -215,6 +215,7 @@
+ 	int ignored;
+ 	GPid pid = 0;
+ 	guint idx = 0;
++    gboolean has_vpn_config = FALSE;
+ 
+ 	/* Kill the old dnsmasq; there doesn't appear to be a way to get dnsmasq
+ 	 * to reread the config file using SIGHUP or similar.  This is a small race
+@@ -232,29 +233,32 @@
+ 	/* Build up the new dnsmasq config file */
+ 	conf = g_string_sized_new (150);
+ 
+-	/* Use split DNS for VPN configs */
++	/* Do Not Use split DNS for VPN configs */
+ 	for (iter = (GSList *) vpn_configs; iter; iter = g_slist_next (iter)) {
+-		if (NM_IS_IP4_CONFIG (iter->data))
+-			add_ip4_config (conf, NM_IP4_CONFIG (iter->data), TRUE);
+-		else if (NM_IS_IP6_CONFIG (iter->data))
+-			add_ip6_config (conf, NM_IP6_CONFIG (iter->data), TRUE);
+-	}
+-
+-	/* Now add interface configs without split DNS */
+-	for (iter = (GSList *) dev_configs; iter; iter = g_slist_next (iter)) {
++        has_vpn_config = TRUE;
+ 		if (NM_IS_IP4_CONFIG (iter->data))
+ 			add_ip4_config (conf, NM_IP4_CONFIG (iter->data), FALSE);
+ 		else if (NM_IS_IP6_CONFIG (iter->data))
+ 			add_ip6_config (conf, NM_IP6_CONFIG (iter->data), FALSE);
+ 	}
+ 
+-	/* And any other random configs */
+-	for (iter = (GSList *) other_configs; iter; iter = g_slist_next (iter)) {
+-		if (NM_IS_IP4_CONFIG (iter->data))
+-			add_ip4_config (conf, NM_IP4_CONFIG (iter->data), FALSE);
+-		else if (NM_IS_IP6_CONFIG (iter->data))
+-			add_ip6_config (conf, NM_IP6_CONFIG (iter->data), FALSE);
+-	}
++    if(!has_vpn_config) {
++        /* Now add interface configs without split DNS */
++        for (iter = (GSList *) dev_configs; iter; iter = g_slist_next (iter)) {
++            if (NM_IS_IP4_CONFIG (iter->data))
++                add_ip4_config (conf, NM_IP4_CONFIG (iter->data), FALSE);
++            else if (NM_IS_IP6_CONFIG (iter->data))
++                add_ip6_config (conf, NM_IP6_CONFIG (iter->data), FALSE);
++        }
++
++        /* And any other random configs */
++        for (iter = (GSList *) other_configs; iter; iter = g_slist_next (iter)) {
++            if (NM_IS_IP4_CONFIG (iter->data))
++                add_ip4_config (conf, NM_IP4_CONFIG (iter->data), FALSE);
++            else if (NM_IS_IP6_CONFIG (iter->data))
++                add_ip6_config (conf, NM_IP6_CONFIG (iter->data), FALSE);
++        }
++    }
+ 
+ 	/* Write out the config file */
+ 	if (!g_file_set_contents (CONFFILE, conf->str, -1, &error)) {
