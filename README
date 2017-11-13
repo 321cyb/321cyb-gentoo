@@ -1,2 +1,3 @@
 This is my personal overlay, maybe only contains Haskell stuff. But we'll see.
 The process is very simple, just add or modify one ebuild, and make path/to/ebuild and done!
+If ebuild says "Appending <your-local-directory> to PORTDIR_OVERLAY...", it's OK, it just modifies the process's env var to make sure ebuild can succeed.
