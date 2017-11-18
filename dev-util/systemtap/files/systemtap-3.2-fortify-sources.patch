@@ -1,0 +1,20 @@
+diff --git a/stapbpf/Makefile b/stapbpf/Makefile
+index 9d5246b..c973482 100644
+--- a/stapbpf/Makefile
++++ b/stapbpf/Makefile
+@@ -232,13 +232,13 @@ AUTOMAKE = ${SHELL} /var/tmp/portage/dev-util/systemtap-3.2/work/systemtap-3.2/m
+ AWK = gawk
+ CC = x86_64-pc-linux-gnu-gcc
+ CCDEPMODE = depmode=none
+-CFLAGS = -march=core2 -O2 -pipe -fstack-protector-all -D_FORTIFY_SOURCE=2
++CFLAGS = -march=core2 -O2 -pipe -fstack-protector-all
+ CPP = x86_64-pc-linux-gnu-gcc -E
+ CPPFLAGS = 
+ CXX = x86_64-pc-linux-gnu-g++ -std=c++11
+ CXXCPP = x86_64-pc-linux-gnu-g++ -std=c++11 -E
+ CXXDEPMODE = depmode=none
+-CXXFLAGS = -march=core2 -O2 -pipe -fstack-protector-all -D_FORTIFY_SOURCE=2
++CXXFLAGS = -march=core2 -O2 -pipe -fstack-protector-all
+ CYGPATH_W = echo
+ DATE = 2017-11-18
+ DEFS = -DHAVE_CONFIG_H
