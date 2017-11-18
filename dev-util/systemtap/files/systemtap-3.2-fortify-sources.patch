@@ -38,10 +38,10 @@ index b4dd4af..9a885bc 100644
 +   CFLAGS="$CFLAGS -Werror -fstack-protector-all"
     AC_COMPILE_IFELSE([AC_LANG_SOURCE([int something ();])], [
         AC_MSG_NOTICE([Compiling with gcc -fstack-protector-all et al.])
--	CFLAGS="$save_CFLAGS -fstack-protector-all -D_FORTIFY_SOURCE=2"
--	CXXFLAGS="$save_CXXFLAGS -fstack-protector-all -D_FORTIFY_SOURCE=2"],[
-+	CFLAGS="$save_CFLAGS -fstack-protector-all"
-+	CXXFLAGS="$save_CXXFLAGS -fstack-protector-all"],[
+-	CFLAGS="$save_CFLAGS -Werror -fstack-protector-all -D_FORTIFY_SOURCE=2"
+-	CXXFLAGS="$save_CXXFLAGS -Werror -fstack-protector-all -D_FORTIFY_SOURCE=2"],[
++	CFLAGS="$save_CFLAGS -Werror -fstack-protector-all"
++	CXXFLAGS="$save_CXXFLAGS -Werror -fstack-protector-all"],[
         AC_MSG_NOTICE([Compiler does not support -fstack-protector-all et al.])
         CFLAGS="$save_CFLAGS"
         CXXFLAGS="$save_CXXFLAGS"])])
